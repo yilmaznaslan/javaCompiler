@@ -34,10 +34,22 @@ In this example we will add more packages to application
 
 
 ### Example3
+In this example we will download and use java libraries in jar format.
 
-`javac -cp "libs/slf4j-api-1.7.32.jar:libs/slf4j-simple-1.7.32.jar" -d build/classes @sourceFiles`
+#### Install libraries
 
-`java -cp "build/classes:libs/slf4j-api-1.7.32.jar:libs/slf4j-simple-1.7.32.jar" com/yilmaznaslan/MainApplication`
+####  Compile
+`javac -cp "libs/slf4j-api-1.7.32.jar:libs/slf4j-simple-1.7.32.jar" @sourceFiles -d build/classes`
+
+or you can also create an environmental variable called `CLASSPATH` and 
+```
+export CLASSPATH=":build/classes:libs/slf4j-api-1.7.32.jar:libs/slf4j-simple-1.7.32.jar"
+javac @sourceFiles -d build/classes
+```
+
+#### Run
+`java -cp ":build/classes:libs/slf4j-api-1.7.32.jar:libs/slf4j-simple-1.7.32.jar" com/yilmaznaslan/MainApplication`
+ 
 
 
 #### How to remove error marks in intellij
