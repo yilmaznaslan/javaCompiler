@@ -6,6 +6,9 @@
 
 `javac src/com/yilmaznaslan/MainApplication.java src/com/yilmaznaslan/Bus.java src/de/bvg/Train.java -d build/classes`
 
+Run
+
+`java -cp build/classes com/yilmaznaslan/MainApplication`
 ### Example 2 - Compile multiple files using a source file
 
 Delete the build directory if it was already created
