@@ -28,7 +28,6 @@ src/de/bvg/Train.java
 Using source files list
 
 `javac -d build/classes @sourceFiles`
-
 ### Example 3 - Compile using external libraries
 
 Delete the build directory if it was already created
@@ -66,12 +65,16 @@ libs(right click) -> add as library -> click OK
 You can also check the library files used in intelliJ
 File -> Project Structure -> Libraries
 
-## 2. How to package the application - creating JAR Files
+## 2. How to package the application
 The basic format of the command for creating a JAR file is:
 
 `jar cf jar-file input-file(s)`
 
-### Creating executable JAR
+### Example 1 - Creating executable JAR
+
+Delete the build directory if it was already created
+
+`rm -r build/`
 
 1. Create the `MANIFEST.MF` file
    `cd mkdir META-INF && cd META-INF && touch MANIFEST.MF`
@@ -82,13 +85,11 @@ The basic format of the command for creating a JAR file is:
 3. Build the jar
    `cd build/classes && jar cmvf META-INF/MANIFEST.MF ../libs/MainApplication.jar com de`
 
-
-
 `java -cp ":slf4j-api-1.7.32.jar:slf4j-simple-1.7.32.jar" -jar MainApplication.jar`
 
 java -cp ":slf4j-api-1.7.32.jar:slf4j-simple-1.7.32.jar" -jar MainApplication.jar
 
-### Creating a non-executable JAR
+### Example 2 - Creating a non-executable JAR
 You can define the structure of the jar file in different ways
 
 `jar cf build/libs/Application.jar build/classes/`
