@@ -24,6 +24,10 @@ Using source files list
 
 `javac -d build/classes @sourceFiles`
 
+Run the application
+
+`java -cp build/classes com/yilmaznaslan/MainApplication`
+
 ### Example 3 - Compile using external libraries
 
 Delete the build directory if it was already created
