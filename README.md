@@ -61,3 +61,43 @@ libs(right click) -> add as library -> click OK
 You can also check the library files used in intelliJ
 File -> Project Structure -> Libraries 
 
+## 2. How to package the application
+The basic format of the command for creating a JAR file is:
+
+`jar cf jar-file input-file(s)`
+
+### Example 1 - Creating executable JAR
+
+Delete the build directory if it was already created
+
+`rm -r build/`
+
+0. Compile the application
+
+`javac -d build/classes @sourceFiles -cp ":libs/slf4j-api-1.7.32.jar:libs/slf4j-simple-1.7.32.jar"`
+``
+1. Create the `MANIFEST.MF` file
+   `cd build && mkdir -p libs/META-INF && cd libs/META-INF && touch MANIFEST.MF`
+
+2. Add Main Class information
+   `echo "Main-Class: com.yilmaznaslan.MainApplication" >> MANIFEST.MF`
+
+3. Build the jar
+   `cd ../classes && jar cmvf ../libs/META-INF/MANIFEST.MF ../libs/MainApplication.jar de com`
+
+4. Run the application
+`java -cp ":libs/slf4j-api-1.7.32.jar:libs/slf4j-simple-1.7.32.jar" -jar build/libs/MainApplication.jar`
+
+java -jar build/libs/MainApplication.jar libs/slf4j-simple-1.7.32.jar libs/slf4j-api-1.7.32.jar
+### Example 2 - Creating a non-executable JAR
+You can define the structure of the jar file in different ways
+
+`jar cf build/libs/Application.jar build/classes/`
+
+or
+
+`cd build/classes && jar cf ../libs/ApplicationNew.jar com de`
+
+If it's not an executable JAR, then you'll need to run the program with something like:
+`java -cp ApplicationNew.jar com.yilmaznaslan.MainApplication.class`
+
