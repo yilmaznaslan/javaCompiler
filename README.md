@@ -42,10 +42,22 @@ Install the following libraries
 
 Compile
 
-`javac -d build/classes @sourceFiles -cp ":libs/slf4j-api.17.32.jar:libs/slf4j-simple.1.7.32.jar"`
+`javac -d build/classes @sourceFiles -cp ":libs/slf4j-api-1.7.32.jar:libs/slf4j-simple-1.7.32.jar"`
 
 or you can also create an environmental variable called `CLASSPATH` and
 ```
 export CLASSPATH=":build/classes:libs/slf4j-api-1.7.32.jar:libs/slf4j-simple-1.7.32.jar"
 javac @sourceFiles -d build/classes
 ```
+
+Run
+
+`java -cp ":build/classes:libs/slf4j-api-1.7.32.jar:libs/slf4j-simple-1.7.32.jar" com/yilmaznaslan/MainApplication`
+
+#### How to remove error marks in intellij
+
+libs(right click) -> add as library -> click OK
+
+You can also check the library files used in intelliJ
+File -> Project Structure -> Libraries 
+
