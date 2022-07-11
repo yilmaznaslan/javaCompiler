@@ -1,7 +1,5 @@
 # Java Compiler Tutorial
 
-# Java Compiler Tutorial
-
 ## How to compile
 
 ### Example 1 - Compile multiple source files into byte code
