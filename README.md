@@ -1,11 +1,16 @@
 # Java Compiler Tutorial
 
+# Java Compiler Tutorial
+
 ## How to compile
 
 ### Example 1 - Compile multiple source files into byte code
 
 `javac src/com/yilmaznaslan/MainApplication.java src/com/yilmaznaslan/Bus.java src/de/bvg/Train.java -d build/classes`
 
+Run
+
+`java -cp build/classes com/yilmaznaslan/MainApplication`
 ### Example 2 - Compile multiple files using a source file
 
 Delete the build directory if it was already created
@@ -50,18 +55,16 @@ export CLASSPATH=":build/classes:libs/slf4j-api-1.7.32.jar:libs/slf4j-simple-1.7
 javac @sourceFiles -d build/classes
 ```
 
-#### Run
-`java -cp ":build/classes:libs/slf4j-api-1.7.32.jar:libs/slf4j-simple-1.7.32.jar" com/yilmaznaslan/MainApplication`
- 
+Run
 
+`java -cp ":build/classes:libs/slf4j-api-1.7.32.jar:libs/slf4j-simple-1.7.32.jar" com/yilmaznaslan/MainApplication`
 
 #### How to remove error marks in intellij
 
 libs(right click) -> add as library -> click OK
 
 You can also check the library files used in intelliJ
-File -> Project Structure -> Libraries 
-
+File -> Project Structure -> Libraries
 
 ## 2. How to package the application - creating JAR Files
 The basic format of the command for creating a JAR file is:
