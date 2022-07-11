@@ -8,7 +8,11 @@
 
 ### Example 2 - Compile multiple files using a source file
 
-Create an empty file that has the class names
+Delete the build directory if it was already created
+
+`rm -r build/`
+
+Create an empty file `sourceFiles` that has the class names
 
 ```
 src/com/yilmaznaslan/MainApplication.java
@@ -17,6 +21,7 @@ src/de/bvg/Train.java
 ```
 
 Using source files list
+
 `javac -d build/classes @sourceFiles`
 
 ### Example 3 - Compile using external libraries
