@@ -1,3 +1,3 @@
-src/com/yilmaznaslan/MainApplication.java
-src/com/yilmaznaslan/Bus.java
-src/de/bvg/Train.java
+src/main/java/com/yilmaznaslan/MainApplication.java
+src/main/java/com/yilmaznaslan/Bus.java
+src/main/java/de/bvg/Train.java
