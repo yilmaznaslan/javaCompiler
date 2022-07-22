@@ -105,4 +105,45 @@ If it's not an executable JAR, then you'll need to run the program with somethin
 6. Run the application
    `java -cp ":libs/slf4j-api-1.7.32.jar:libs/slf4j-simple-1.7.32.jar" -jar build/libs/MainApplication.jar`
 
-### Example 3 - Creating FatJAt with dependencies
+### Example 2 - Creating FatJAt with dependencies
+
+Delete the build directory if it was already created
+
+`rm -r build/`
+
+0. Compile the source files into class files/byte code
+
+`javac -d build/classes @src/main/resources/sourceFiles -cp ":libs/slf4j-api-1.7.32.jar:libs/slf4j-simple-1.7.32.jar"`
+``
+1. Create the `MANIFEST.MF` file in resource folder
+   `touch src/main/resources/META-INF/MANIFEST.MF`
+
+2. Add Main Class information
+   `echo "Main-Class: com.yilmaznaslan.MainApplication" >> src/main/resources/META-INF/MANIFEST.MF`
+
+3. Unpack the dependency Jar files into build/classes and remove after using
+`cd build/classes && jar xf ../../libs/slf4j-api-1.7.32.jar org && cd ../../`
+`cd build/classes && jar xf ../../libs/slf4j-simple-1.7.32.jar org && cd ../../`
+`rm -r build/classes/org`
+4. Build the jar
+   `mkdir -p build/libs`
+   `jar cmvf ./src/main/resources/META-INF/MANIFEST.MF build/libs/MainApplication.jar -C ./build/classes .`
+
+5. Run the application
+   `java -jar build/libs/MainApplication.jar`
+
+### Example 3 - Creating a non-executable JAR
+You can define the structure of the jar file in different ways
+
+`jar cf build/libs/Application.jar build/classes/`
+
+or
+
+`cd build/classes && jar cf ../libs/ApplicationNew.jar com de`
+
+If it's not an executable JAR, then you'll need to run the program with something like:
+`java -cp ApplicationNew.jar com.yilmaznaslan.MainApplication.class`
+
+
+6. Run the application
+   `java -cp ":libs/slf4j-api-1.7.32.jar:libs/slf4j-simple-1.7.32.jar" -jar build/libs/MainApplication.jar`
