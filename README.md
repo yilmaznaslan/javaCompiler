@@ -61,7 +61,7 @@ libs(right click) -> add as library -> click OK
 You can also check the library files used in intelliJ
 File -> Project Structure -> Libraries 
 
-## 2. How to package the application
+## 2. Packaging the application
 The basic format of the command for creating a JAR file is:
 
 `jar cf jar-file input-file(s)`
@@ -89,7 +89,7 @@ Delete the build directory if it was already created
 4. Run the application
    `java -jar build/libs/MainApplication.jar`
 
-### Example 2 - Creating a non-executable JAR
+### Example 2 - Creating a non-executable JAR with dependencies
 You can define the structure of the jar file in different ways
 
 `jar cf build/libs/Application.jar build/classes/`
@@ -105,7 +105,7 @@ If it's not an executable JAR, then you'll need to run the program with somethin
 6. Run the application
    `java -cp ":libs/slf4j-api-1.7.32.jar:libs/slf4j-simple-1.7.32.jar" -jar build/libs/MainApplication.jar`
 
-### Example 2 - Creating FatJAt with dependencies
+### Example 3 - Creating FatJAt with dependencies
 
 Delete the build directory if it was already created
 
@@ -115,6 +115,7 @@ Delete the build directory if it was already created
 
 `javac -d build/classes @src/main/resources/sourceFiles -cp ":libs/slf4j-api-1.7.32.jar:libs/slf4j-simple-1.7.32.jar"`
 ``
+
 1. Create the `MANIFEST.MF` file in resource folder
    `touch src/main/resources/META-INF/MANIFEST.MF`
 
@@ -132,18 +133,3 @@ Delete the build directory if it was already created
 5. Run the application
    `java -jar build/libs/MainApplication.jar`
 
-### Example 3 - Creating a non-executable JAR
-You can define the structure of the jar file in different ways
-
-`jar cf build/libs/Application.jar build/classes/`
-
-or
-
-`cd build/classes && jar cf ../libs/ApplicationNew.jar com de`
-
-If it's not an executable JAR, then you'll need to run the program with something like:
-`java -cp ApplicationNew.jar com.yilmaznaslan.MainApplication.class`
-
-
-6. Run the application
-   `java -cp ":libs/slf4j-api-1.7.32.jar:libs/slf4j-simple-1.7.32.jar" -jar build/libs/MainApplication.jar`
