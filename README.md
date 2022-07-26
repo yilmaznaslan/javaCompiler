@@ -90,20 +90,27 @@ Delete the build directory if it was already created
    `java -jar build/libs/MainApplication.jar`
 
 ### Example 2 - Creating a non-executable JAR with dependencies
-You can define the structure of the jar file in different ways
+Delete the build directory if it was already created
 
-`jar cf build/libs/Application.jar build/classes/`
+`rm -r build/`
 
-or
+0. Compile the source files into class files/byte code
 
-`cd build/classes && jar cf ../libs/ApplicationNew.jar com de`
+`javac -d build/classes @src/main/resources/sourceFiles -cp ":libs/slf4j-api-1.7.32.jar:libs/slf4j-simple-1.7.32.jar"`
+``
 
-If it's not an executable JAR, then you'll need to run the program with something like:
-`java -cp ApplicationNew.jar com.yilmaznaslan.MainApplication.class`
+1. Create the `MANIFEST.MF` file in resource folder
+   `touch src/main/resources/META-INF/MANIFEST.MF`
 
+2. Add Main Class information
+   `echo "Main-Class: com.yilmaznaslan.MainApplication" >> src/main/resources/META-INF/MANIFEST.MF`
 
-6. Run the application
-   `java -cp ":libs/slf4j-api-1.7.32.jar:libs/slf4j-simple-1.7.32.jar" -jar build/libs/MainApplication.jar`
+3. Build the jar
+   `mkdir -p build/libs`
+   `jar cf build/libs/Application.jar -C ./build/classes/ .`
+
+4. Run the application
+   `java -cp ":libs/slf4j-api-1.7.32.jar:libs/slf4j-simple-1.7.32.jar:build/libs/Application.jar:build/classes" com.yilmaznaslan.MainApplication`
 
 ### Example 3 - Creating FatJAt with dependencies
 
