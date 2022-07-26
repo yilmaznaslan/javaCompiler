@@ -125,7 +125,7 @@ Delete the build directory if it was already created
 3. Unpack the dependency Jar files into build/classes and remove after using
 `cd build/classes && jar xf ../../libs/slf4j-api-1.7.32.jar org && cd ../../`
 `cd build/classes && jar xf ../../libs/slf4j-simple-1.7.32.jar org && cd ../../`
-`rm -r build/classes/org`
+
 4. Build the jar
    `mkdir -p build/libs`
    `jar cmvf ./src/main/resources/META-INF/MANIFEST.MF build/libs/MainApplication.jar -C ./build/classes .`
