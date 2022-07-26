@@ -65,7 +65,7 @@ libs(right click) -> add as library -> click OK
 You can also check the library files used in intelliJ
 File -> Project Structure -> Libraries
 
-## 2. How to package the application
+## 2. Packaging the application
 The basic format of the command for creating a JAR file is:
 
 `jar cf jar-file input-file(s)`
@@ -76,28 +76,72 @@ Delete the build directory if it was already created
 
 `rm -r build/`
 
-1. Create the `MANIFEST.MF` file
-   `cd mkdir META-INF && cd META-INF && touch MANIFEST.MF`
+0. Compile the source files into class files/byte code
+
+`javac -d build/classes @sourceFiles`
+``
+1. Create the `MANIFEST.MF` file in resource folder
+   `touch src/main/resources/META-INF/MANIFEST.MF`
 
 2. Add Main Class information
-   `echo "Main-Class: com.yilmaznaslan.MainApplication" >> MANIFEST.MF`
+   `echo "Main-Class: com.yilmaznaslan.MainApplication" >> src/main/resources/META-INF/MANIFEST.MF`
 
 3. Build the jar
-   `cd build/classes && jar cmvf META-INF/MANIFEST.MF ../libs/MainApplication.jar com de`
+   `mkdir -p build/libs`
+   `jar cmvf ./src/main/resources/META-INF/MANIFEST.MF build/libs/MainApplication.jar -C ./build/classes .`
 
-`java -cp ":slf4j-api-1.7.32.jar:slf4j-simple-1.7.32.jar" -jar MainApplication.jar`
+4. Run the application
+   `java -jar build/libs/MainApplication.jar`
 
-java -cp ":slf4j-api-1.7.32.jar:slf4j-simple-1.7.32.jar" -jar MainApplication.jar
+### Example 2 - Creating a non-executable JAR with dependencies
+Delete the build directory if it was already created
 
-### Example 2 - Creating a non-executable JAR
-You can define the structure of the jar file in different ways
+`rm -r build/`
 
-`jar cf build/libs/Application.jar build/classes/`
+0. Compile the source files into class files/byte code
 
-or
+`javac -d build/classes @src/main/resources/sourceFiles -cp ":libs/slf4j-api-1.7.32.jar:libs/slf4j-simple-1.7.32.jar"`
+``
 
-`cd build/classes && jar cf ../libs/ApplicationNew.jar com de`
+1. Create the `MANIFEST.MF` file in resource folder
+   `touch src/main/resources/META-INF/MANIFEST.MF`
 
-If it's not an executable JAR, then you'll need to run the program with something like:
-`java -cp ApplicationNew.jar com.yilmaznaslan.MainApplication.class`
+2. Add Main Class information
+   `echo "Main-Class: com.yilmaznaslan.MainApplication" >> src/main/resources/META-INF/MANIFEST.MF`
+
+3. Build the jar
+   `mkdir -p build/libs`
+   `jar cf build/libs/Application.jar -C ./build/classes/ .`
+
+4. Run the application
+   `java -cp ":libs/slf4j-api-1.7.32.jar:libs/slf4j-simple-1.7.32.jar:build/libs/Application.jar:build/classes" com.yilmaznaslan.MainApplication`
+
+### Example 3 - Creating FatJAt with dependencies
+
+Delete the build directory if it was already created
+
+`rm -r build/`
+
+0. Compile the source files into class files/byte code
+
+`javac -d build/classes @src/main/resources/sourceFiles -cp ":libs/slf4j-api-1.7.32.jar:libs/slf4j-simple-1.7.32.jar"`
+``
+
+1. Create the `MANIFEST.MF` file in resource folder
+   `touch src/main/resources/META-INF/MANIFEST.MF`
+
+2. Add Main Class information
+   `echo "Main-Class: com.yilmaznaslan.MainApplication" >> src/main/resources/META-INF/MANIFEST.MF`
+
+3. Unpack the dependency Jar files into build/classes and remove after using
+   `cd build/classes && jar xf ../../libs/slf4j-api-1.7.32.jar org && cd ../../`
+   `cd build/classes && jar xf ../../libs/slf4j-simple-1.7.32.jar org && cd ../../`
+
+4. Build the jar
+   `mkdir -p build/libs`
+   `jar cmvf ./src/main/resources/META-INF/MANIFEST.MF build/libs/MainApplication.jar -C ./build/classes .`
+
+5. Run the application
+   `java -jar build/libs/MainApplication.jar`
+
 
